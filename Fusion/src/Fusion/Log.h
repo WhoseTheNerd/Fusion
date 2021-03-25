@@ -7,7 +7,7 @@
 
 namespace Fusion {
 
-	class F_API Log
+	class Log
 	{
 	public:
 		static void Init();

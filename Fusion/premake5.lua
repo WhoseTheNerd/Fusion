@@ -1,5 +1,5 @@
 project "Fusion"
-	kind "SharedLib"
+	kind "StaticLib"
 	language "C++"
 	cppdialect "C++17"
 	staticruntime "on"
@@ -21,20 +21,14 @@ project "Fusion"
 		"src",
 		"%{IncludeDir.SPDLOG}"
 	}
+	
+	defines
+	{
+		"_CRT_SECURE_NO_WARNINGS"
+	}
 
 	filter "system:windows"
 		systemversion "latest"
-
-		defines
-		{
-			"F_BUILD_DLL",
-			"F_PLATFORM_WINDOWS"
-		}
-
-		postbuildcommands
-		{
-			("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Sandbox\"")
-		}
 	
 	filter "configurations:Debug"
 		defines "F_DEBUG"

@@ -1,3 +1,5 @@
+include "./vendor/premake/solution_items.lua"
+
 workspace "Fusion"
 	architecture "x86_64"
 	startproject "Sandbox"
@@ -8,6 +10,16 @@ workspace "Fusion"
 		"Debug",
 		"Release",
 		"Dist"
+	}
+
+	solution_items
+	{
+		".editorconfig"
+	}
+
+	flags
+	{
+		"MultiProcessorCompile"
 	}
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
