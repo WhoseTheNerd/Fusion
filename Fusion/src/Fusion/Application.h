@@ -14,5 +14,5 @@ namespace Fusion {
 	};
 
 	// Client defines this!
-	Application* CreateApplication();
+	Scope<Application> CreateApplication();
 }

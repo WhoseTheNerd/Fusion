@@ -14,7 +14,7 @@ public:
 	}
 };
 
-Fusion::Application* Fusion::CreateApplication()
+Fusion::Scope<Fusion::Application> Fusion::CreateApplication()
 {
-	return new Sandbox();
+	return Fusion::CreateScope<Sandbox>();
 }

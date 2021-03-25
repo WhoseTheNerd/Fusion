@@ -2,7 +2,7 @@
 
 #ifdef F_PLATFORM_WINDOWS
 
-extern Fusion::Application* Fusion::CreateApplication();
+extern Fusion::Scope<Fusion::Application> Fusion::CreateApplication();
 
 int main(int argc, char** argv)
 {
@@ -10,7 +10,6 @@ int main(int argc, char** argv)
 	F_CORE_INFO("Initializing Application");
 	auto app = Fusion::CreateApplication();
 	app->Run();
-	delete app;
 }
 
 #else
