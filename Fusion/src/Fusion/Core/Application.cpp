@@ -5,6 +5,7 @@ namespace Fusion {
 
 	Application::Application()
 	{
+		m_Window = Window::Create();
 	}
 
 	Application::~Application()
@@ -13,6 +14,9 @@ namespace Fusion {
 	
 	void Application::Run()
 	{
-		while (true);
+		while (true)
+		{
+			m_Window->OnUpdate();
+		}
 	}
 }

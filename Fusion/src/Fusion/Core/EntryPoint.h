@@ -4,8 +4,6 @@
 
 extern Fusion::Scope<Fusion::Application> Fusion::CreateApplication();
 
-#include <GLFW/glfw3.h>
-
 int main(int argc, char** argv)
 {
 	Fusion::Log::Init();

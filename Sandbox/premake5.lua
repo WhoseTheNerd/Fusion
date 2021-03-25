@@ -16,8 +16,7 @@ project "Sandbox"
 	includedirs
 	{
 		"%{wks.location}/Fusion/src",
-		"%{IncludeDir.SPDLOG}",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.SPDLOG}"
 	}
 
 	links
