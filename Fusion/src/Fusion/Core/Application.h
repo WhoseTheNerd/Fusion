@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Fusion/Base.h"
+#include "Fusion/Core/Base.h"
 
 namespace Fusion {
 

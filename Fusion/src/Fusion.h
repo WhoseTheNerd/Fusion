@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Fusion/Base.h"
-#include "Fusion/Application.h"
-#include "Fusion/Log.h"
+#include "Fusion/Core/Base.h"
+#include "Fusion/Core/Application.h"
+#include "Fusion/Core/Log.h"
 
-#include "Fusion/EntryPoint.h"
+#include "Fusion/Core/EntryPoint.h"

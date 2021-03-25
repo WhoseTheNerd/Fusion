@@ -19,12 +19,19 @@ project "Fusion"
 	includedirs
 	{
 		"src",
-		"%{IncludeDir.SPDLOG}"
+		"%{IncludeDir.SPDLOG}",
+		"%{IncludeDir.GLFW}"
 	}
 	
 	defines
 	{
-		"_CRT_SECURE_NO_WARNINGS"
+		"_CRT_SECURE_NO_WARNINGS",
+		"GLFW_INCLUDE_NONE"
+	}
+
+	links
+	{
+		"GLFW"
 	}
 
 	filter "system:windows"

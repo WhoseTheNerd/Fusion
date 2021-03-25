@@ -2,7 +2,7 @@
 
 #include <memory>
 
-#include "Fusion/Base.h"
+#include "Fusion/Core/Base.h"
 #include "spdlog/spdlog.h"
 
 namespace Fusion {

@@ -5,7 +5,7 @@ class Sandbox : public Fusion::Application
 public:
 	Sandbox()
 	{
-
+		
 	}
 
 	~Sandbox()

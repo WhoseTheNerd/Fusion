@@ -26,6 +26,11 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
 IncludeDir["SPDLOG"] = "%{wks.location}/Fusion/vendor/spdlog/include"
+IncludeDir["GLFW"] = "%{wks.location}/Fusion/vendor/glfw/include"
+
+group "Dependencies"
+	include "Fusion/vendor/glfw"
+group ""
 
 include "Fusion"
 include "Sandbox"

@@ -2,7 +2,7 @@
 
 #include <memory>
 
-#include "Fusion/PlatformDetection.h"
+#include "Fusion/Core/PlatformDetection.h"
 
 #ifdef F_DEBUG
 	#if defined(F_PLATFORM_WINDOWS)
@@ -17,8 +17,6 @@
 #else
 	#define F_DEBUGBREAK()
 #endif
-
-
 
 #define BIT(x) (1 << x)
 
@@ -42,7 +40,7 @@ namespace Fusion {
 	}
 }
 
-#include "Fusion/Log.h"
+#include "Fusion/Core/Log.h"
 
 #ifdef F_ENABLE_ASSERTS
 	#define F_ASSERT(x, ...) { if(!(x)) { F_ERROR("Assertion Failed: {0}", __VA_ARGS__); F_DEBUGBREAK(); } }
