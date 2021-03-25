@@ -1,3 +1,4 @@
+#include "fpch.h"
 #include "Application.h"
 
 namespace Fusion {

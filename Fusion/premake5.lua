@@ -7,6 +7,9 @@ project "Fusion"
 	targetdir ("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("%{wks.location}/bin-int/" .. outputdir .. "/%{prj.name}")
 
+	pchheader "fpch.h"
+	pchsource "src/fpch.cpp"
+
 	files
 	{
 		"src/**.h",
