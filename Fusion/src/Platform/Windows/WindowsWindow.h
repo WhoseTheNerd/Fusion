@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Fusion/Core/Window.h"
+#include "Fusion/Graphics/Context.h"
 
 struct GLFWwindow;
 
@@ -38,5 +39,7 @@ namespace Fusion {
 		};
 
 		WindowData m_Data;
+
+		Scope<Graphics::Context> m_Context;
 	};
 }

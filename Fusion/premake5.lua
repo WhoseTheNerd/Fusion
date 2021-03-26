@@ -20,7 +20,8 @@ project "Fusion"
 	{
 		"src",
 		"%{IncludeDir.SPDLOG}",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}"
 	}
 	
 	defines
@@ -31,7 +32,8 @@ project "Fusion"
 
 	links
 	{
-		"GLFW"
+		"GLFW",
+		"Glad"
 	}
 
 	filter "system:windows"

@@ -25,8 +25,6 @@ namespace Fusion {
 	{
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(F_BIND_EVENT_FN(Application::OnWindowClose));
-
-		F_CORE_TRACE("{0}", e.ToString());
 	}
 
 	bool Application::OnWindowClose(WindowCloseEvent& e)

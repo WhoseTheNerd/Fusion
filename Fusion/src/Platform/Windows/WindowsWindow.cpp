@@ -29,7 +29,9 @@ namespace Fusion {
 		m_Window = glfwCreateWindow(props.Width, props.Height, m_Data.Title.c_str(), NULL, NULL);
 		F_CORE_ASSERT(m_Window, "Failed to create Window");
 
-		glfwMakeContextCurrent(m_Window);
+		m_Context = Graphics::Context::Create(static_cast<void*>(m_Window));
+		m_Context->Init();
+
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 
 		// Set GLFW callbacks
@@ -124,7 +126,7 @@ namespace Fusion {
 	void WindowsWindow::OnUpdate()
 	{
 		glfwPollEvents();
-		glfwSwapBuffers(m_Window);
+		m_Context->SwapBuffers();
 	}
 
 }
