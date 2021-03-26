@@ -40,7 +40,7 @@ public:
 	{
 	}
 
-	virtual void OnUpdate(Fusion::Timestep ts)
+	virtual void OnUpdate(const Fusion::Timestep ts)
 	{
 		glClearColor(0.2f, 0.3f, 0.8f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);

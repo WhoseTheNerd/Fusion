@@ -34,7 +34,7 @@ namespace Fusion {
 			// Event Callback
 
 			WindowData(const WindowProps& props)
-				: Title(props.Title), Width(props.Width), Height(props.Height)
+				: Title(props.Title), Width(props.Width), Height(props.Height), VSync(true)
 			{ }
 		};
 

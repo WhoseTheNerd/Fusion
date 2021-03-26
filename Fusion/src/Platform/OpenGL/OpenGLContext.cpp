@@ -21,7 +21,7 @@ namespace Fusion { namespace Graphics {
 	{
 		glfwMakeContextCurrent(m_WindowHandle);
 
-		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		const int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 		F_CORE_ASSERT(status, "Failed to initialize Glad!");
 
 		F_CORE_INFO("OpenGL Info:");

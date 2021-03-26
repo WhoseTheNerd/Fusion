@@ -21,7 +21,7 @@ namespace Fusion {
 	{
 		if (!s_GLFWInitialized)
 		{
-			int status = glfwInit();
+			const int status = glfwInit();
 			F_CORE_ASSERT(status, "Failed to initialize GLFW!");
 			s_GLFWInitialized = true;
 		}

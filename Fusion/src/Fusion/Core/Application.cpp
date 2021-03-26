@@ -39,7 +39,7 @@ namespace Fusion {
 	{
 		while (m_Running)
 		{
-			float time = static_cast<float>(glfwGetTime());
+			const float time = static_cast<float>(glfwGetTime());
 			Timestep ts = time - m_LastFrameTime;
 			m_LastFrameTime = time;
 
