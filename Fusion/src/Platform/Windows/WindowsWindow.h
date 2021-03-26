@@ -17,6 +17,8 @@ namespace Fusion {
 
 		virtual uint32_t GetWidth() const override { return m_Data.Width; }
 		virtual uint32_t GetHeight() const override { return m_Data.Height; }
+
+		virtual void SetEventCallback(const EventCallbackFn& callback) override { m_Data.EventCallback = callback; };
 	private:
 		GLFWwindow* m_Window;
 
@@ -25,6 +27,8 @@ namespace Fusion {
 			std::string Title;
 			uint32_t Width, Height;
 			bool VSync;
+
+			EventCallbackFn EventCallback;
 
 			// Event Callback
 
