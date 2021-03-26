@@ -5,12 +5,13 @@
 
 namespace Fusion { namespace Graphics {
 
-	Scope<VertexBuffer> VertexBuffer::Create(const std::vector<float>& vertices)
+	Ref<VertexBuffer> VertexBuffer::Create(const std::vector<float>& vertices)
 	{
-		return CreateScope<OpenGLVertexBuffer>(vertices);
+		return CreateRef<OpenGLVertexBuffer>(vertices);
 	}
 
 	OpenGLVertexBuffer::OpenGLVertexBuffer(const std::vector<float>& vertices)
+		: m_Layout({})
 	{
 		glCreateBuffers(1, &m_BufferID);
 		glNamedBufferData(m_BufferID, vertices.size() * sizeof(float), vertices.data(), GL_STATIC_DRAW);

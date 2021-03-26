@@ -14,7 +14,7 @@ namespace Fusion { namespace Graphics {
 		
 		virtual uint32_t GetBufferHandle() const = 0;
 
-		static Scope<IndexBuffer> Create(const std::vector<uint32_t>& indices);
+		static Ref<IndexBuffer> Create(const std::vector<uint32_t>& indices);
 	};
 
 } }

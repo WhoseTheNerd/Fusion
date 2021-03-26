@@ -5,9 +5,9 @@
 
 namespace Fusion { namespace Graphics {
 
-	Scope<IndexBuffer> IndexBuffer::Create(const std::vector<uint32_t>& indices)
+	Ref<IndexBuffer> IndexBuffer::Create(const std::vector<uint32_t>& indices)
 	{
-		return CreateScope<OpenGLIndexBuffer>(indices);
+		return CreateRef<OpenGLIndexBuffer>(indices);
 	}
 
 	OpenGLIndexBuffer::OpenGLIndexBuffer(const std::vector<uint32_t>& indices)

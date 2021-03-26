@@ -25,21 +25,19 @@ public:
 
 		// Create VBO
 		m_VBO = Fusion::Graphics::VertexBuffer::Create(vertices);
+		m_VBO->SetLayout({ {Fusion::Graphics::ShaderDataType::Float3, "in_Position"} });
 		
 		// Create IBO
 		m_IBO = Fusion::Graphics::IndexBuffer::Create(indices);
 
 		// Create and configure VAO
-		glCreateVertexArrays(1, &vao); 
-		glVertexArrayVertexBuffer(vao, 0, m_VBO->GetBufferHandle(), 0, sizeof(float) * 3);
-		glVertexArrayElementBuffer(vao, m_IBO->GetBufferHandle());
-		glEnableVertexArrayAttrib(vao, 0);
-		glVertexArrayAttribFormat(vao, 0, 3, GL_FLOAT, GL_FALSE, NULL);
+		m_VAO = Fusion::Graphics::VertexArray::Create();
+		m_VAO->AddVertexBuffer(m_VBO);
+		m_VAO->AddIndexBuffer(m_IBO);
 	}
 
 	virtual void OnDetach()
 	{
-		glDeleteVertexArrays(1, &vao);
 	}
 
 	virtual void OnUpdate(Fusion::Timestep ts)
@@ -47,7 +45,7 @@ public:
 		glClearColor(0.2f, 0.3f, 0.8f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		glBindVertexArray(vao);
+		m_VAO->Bind();
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 	}
 
@@ -56,9 +54,9 @@ public:
 
 	}
 private:
-	uint32_t vao;
-	Fusion::Scope<Fusion::Graphics::VertexBuffer> m_VBO;
-	Fusion::Scope<Fusion::Graphics::IndexBuffer> m_IBO;
+	Fusion::Ref<Fusion::Graphics::VertexArray> m_VAO;
+	Fusion::Ref<Fusion::Graphics::VertexBuffer> m_VBO;
+	Fusion::Ref<Fusion::Graphics::IndexBuffer> m_IBO;
 };
 
 class Sandbox : public Fusion::Application
