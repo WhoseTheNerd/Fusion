@@ -2,35 +2,35 @@
 
 #include <glad/glad.h>
 
+#include <vector>
+
 class SandboxLayer : public Fusion::Layer
 {
 public:
 	virtual void OnAttach()
 	{
-		float vertices[] = {
+		std::vector<float> vertices = {
 			 0.5f,  0.5f, 0.0f,  // top right
 			 0.5f, -0.5f, 0.0f,  // bottom right
 			-0.5f, -0.5f, 0.0f,  // bottom left
 			-0.5f,  0.5f, 0.0f   // top left 
 		};
 
-		unsigned int indices[] = {
+		std::vector<uint32_t> indices = {
 			0, 1, 3,   // first triangle
 			1, 2, 3    // second triangle
 		};
 
 		// Create VBO
-		glCreateBuffers(1, &vbo);
-		glNamedBufferData(vbo, sizeof(vertices), vertices, GL_STATIC_DRAW);
+		m_VBO = Fusion::Graphics::VertexBuffer::Create(vertices);
 		
 		// Create IBO
-		glCreateBuffers(1, &ibo);
-		glNamedBufferData(ibo, sizeof(indices), indices, GL_STATIC_DRAW);
+		m_IBO = Fusion::Graphics::IndexBuffer::Create(indices);
 
 		// Create and configure VAO
 		glCreateVertexArrays(1, &vao); 
-		glVertexArrayVertexBuffer(vao, 0, vbo, 0, sizeof(float) * 3);
-		glVertexArrayElementBuffer(vao, ibo);
+		glVertexArrayVertexBuffer(vao, 0, m_VBO->GetBufferHandle(), 0, sizeof(float) * 3);
+		glVertexArrayElementBuffer(vao, m_IBO->GetBufferHandle());
 		glEnableVertexArrayAttrib(vao, 0);
 		glVertexArrayAttribFormat(vao, 0, 3, GL_FLOAT, GL_FALSE, NULL);
 	}
@@ -38,8 +38,6 @@ public:
 	virtual void OnDetach()
 	{
 		glDeleteVertexArrays(1, &vao);
-		glDeleteBuffers(1, &vbo);
-		glDeleteBuffers(1, &ibo);
 	}
 
 	virtual void OnUpdate(Fusion::Timestep ts)
@@ -57,8 +55,8 @@ public:
 	}
 private:
 	uint32_t vao;
-	uint32_t vbo;
-	uint32_t ibo;
+	Fusion::Scope<Fusion::Graphics::VertexBuffer> m_VBO;
+	Fusion::Scope<Fusion::Graphics::IndexBuffer> m_IBO;
 };
 
 class Sandbox : public Fusion::Application

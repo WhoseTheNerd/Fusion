@@ -6,3 +6,6 @@
 #include "Fusion/Core/Layer.h"
 
 #include "Fusion/Core/EntryPoint.h"
+
+#include "Fusion/Graphics/VertexBuffer.h"
+#include "Fusion/Graphics/IndexBuffer.h"
