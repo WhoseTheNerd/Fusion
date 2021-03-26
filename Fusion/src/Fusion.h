@@ -10,3 +10,4 @@
 #include "Fusion/Graphics/VertexBuffer.h"
 #include "Fusion/Graphics/IndexBuffer.h"
 #include "Fusion/Graphics/VertexArray.h"
+#include "Fusion/Graphics/Shader.h"

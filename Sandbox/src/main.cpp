@@ -12,10 +12,11 @@ public:
 	virtual void OnAttach()
 	{
 		std::vector<float> vertices = {
-			 0.5f,  0.5f, 0.0f,  // top right
-			 0.5f, -0.5f, 0.0f,  // bottom right
-			-0.5f, -0.5f, 0.0f,  // bottom left
-			-0.5f,  0.5f, 0.0f   // top left 
+			// Vertex position     Color
+			 0.5f,  0.5f, 0.0f,    1.0f, 0.0f, 0.0f,
+			 0.5f, -0.5f, 0.0f,    0.0f, 1.0f, 0.0f,
+			-0.5f, -0.5f, 0.0f,	   0.0f, 0.0f, 1.0f,
+			-0.5f,  0.5f, 0.0f,	   1.0f, 1.0f, 0.0f,
 		};
 
 		std::vector<uint32_t> indices = {
@@ -25,7 +26,10 @@ public:
 
 		// Create VBO
 		m_VBO = Fusion::Graphics::VertexBuffer::Create(vertices);
-		m_VBO->SetLayout({ {Fusion::Graphics::ShaderDataType::Float3, "in_Position"} });
+		m_VBO->SetLayout({ 
+			{Fusion::Graphics::ShaderDataType::Float3, "in_Position"},
+			{Fusion::Graphics::ShaderDataType::Float3, "in_Color"}
+		});
 		
 		// Create IBO
 		m_IBO = Fusion::Graphics::IndexBuffer::Create(indices);
@@ -34,6 +38,30 @@ public:
 		m_VAO = Fusion::Graphics::VertexArray::Create();
 		m_VAO->AddVertexBuffer(m_VBO);
 		m_VAO->AddIndexBuffer(m_IBO);
+
+		std::string vertexShaderSrc = R"(
+#version 330 core
+layout (location = 0) in vec3 in_Position;
+layout (location = 0) in vec3 in_Color;
+out vec3 out_Color;
+void main()
+{
+	out_Color = in_Color;
+	gl_Position = vec4(in_Position, 1.0);
+}		
+)";
+
+		std::string fragmentShaderSrc = R"(
+#version 330 core
+out vec4 FragColor;
+in vec3 out_Color;
+void main()
+{
+	FragColor = vec4(out_Color, 1.0);
+}		
+)";
+
+		m_Shader = Fusion::Graphics::Shader::Create(vertexShaderSrc, fragmentShaderSrc);
 	}
 
 	virtual void OnDetach()
@@ -46,6 +74,7 @@ public:
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		m_VAO->Bind();
+		m_Shader->Bind();
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 	}
 
@@ -57,6 +86,7 @@ private:
 	Fusion::Ref<Fusion::Graphics::VertexArray> m_VAO;
 	Fusion::Ref<Fusion::Graphics::VertexBuffer> m_VBO;
 	Fusion::Ref<Fusion::Graphics::IndexBuffer> m_IBO;
+	Fusion::Ref<Fusion::Graphics::Shader> m_Shader;
 };
 
 class Sandbox : public Fusion::Application
