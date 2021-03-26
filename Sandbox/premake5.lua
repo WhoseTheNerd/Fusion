@@ -17,13 +17,13 @@ project "Sandbox"
 	{
 		"%{wks.location}/Fusion/src",
 		"%{IncludeDir.SPDLOG}",
-		"%{IncludeDir.Glad}"
+		"%{IncludeDir.Glad}",
+		"%{IncludeDir.GLM}"
 	}
 
 	links
 	{
-		"Fusion",
-		"Glad"
+		"Fusion"
 	}
 
 	filter "system:windows"

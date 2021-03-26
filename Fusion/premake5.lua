@@ -21,7 +21,8 @@ project "Fusion"
 		"src",
 		"%{IncludeDir.SPDLOG}",
 		"%{IncludeDir.GLFW}",
-		"%{IncludeDir.Glad}"
+		"%{IncludeDir.Glad}",
+		"%{IncludeDir.GLM}"
 	}
 	
 	defines

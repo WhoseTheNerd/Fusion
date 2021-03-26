@@ -4,6 +4,8 @@
 
 #include <vector>
 
+#include <glm/glm.hpp>
+
 class SandboxLayer : public Fusion::Layer
 {
 public:
