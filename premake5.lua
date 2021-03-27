@@ -29,6 +29,7 @@ IncludeDir["SPDLOG"] = "%{wks.location}/Fusion/vendor/spdlog/include"
 IncludeDir["GLFW"] = "%{wks.location}/Fusion/vendor/glfw/include"
 IncludeDir["Glad"] = "%{wks.location}/Fusion/vendor/glad/include"
 IncludeDir["GLM"] = "%{wks.location}/Fusion/vendor/glm"
+IncludeDir["stb_image"] = "%{wks.location}/Fusion/vendor/stb_image"
 
 group "Dependencies"
 	include "Fusion/vendor/glfw"

@@ -12,11 +12,11 @@ public:
 	virtual void OnAttach()
 	{
 		std::vector<float> vertices = {
-			// Vertex position     Color
-			 0.5f,  0.5f, 0.0f,    1.0f, 0.0f, 0.0f,
-			 0.5f, -0.5f, 0.0f,    0.0f, 1.0f, 0.0f,
-			-0.5f, -0.5f, 0.0f,	   0.0f, 0.0f, 1.0f,
-			-0.5f,  0.5f, 0.0f,	   1.0f, 1.0f, 0.0f,
+			// Vertex position     Texture coords
+			 0.5f,  0.5f, 0.0f,    1.0f, 1.0f,
+			 0.5f, -0.5f, 0.0f,    1.0f, 0.0f,
+			-0.5f, -0.5f, 0.0f,	   0.0f, 0.0f,
+			-0.5f,  0.5f, 0.0f,	   0.0f, 1.0f,
 		};
 
 		std::vector<uint32_t> indices = {
@@ -28,7 +28,7 @@ public:
 		m_VBO = Fusion::Graphics::VertexBuffer::Create(vertices);
 		m_VBO->SetLayout({ 
 			{Fusion::Graphics::ShaderDataType::Float3, "in_Position"},
-			{Fusion::Graphics::ShaderDataType::Float3, "in_Color"}
+			{Fusion::Graphics::ShaderDataType::Float2, "in_TexCoords"}
 		});
 		
 		// Create IBO
@@ -39,14 +39,16 @@ public:
 		m_VAO->AddVertexBuffer(m_VBO);
 		m_VAO->AddIndexBuffer(m_IBO);
 
+		m_Texture = Fusion::Graphics::Texture2D::Create("wall.jpg");
+
 		std::string vertexShaderSrc = R"(
 #version 330 core
 layout (location = 0) in vec3 in_Position;
-layout (location = 0) in vec3 in_Color;
-out vec3 out_Color;
+layout (location = 0) in vec2 in_TexCoords;
+out vec2 out_TexCoords;
 void main()
 {
-	out_Color = in_Color;
+	out_TexCoords = in_TexCoords;
 	gl_Position = vec4(in_Position, 1.0);
 }		
 )";
@@ -54,14 +56,16 @@ void main()
 		std::string fragmentShaderSrc = R"(
 #version 330 core
 out vec4 FragColor;
-in vec3 out_Color;
+in vec2 out_TexCoords;
+uniform sampler2D u_Texture;
 void main()
 {
-	FragColor = vec4(out_Color, 1.0);
+	FragColor = texture(u_Texture, out_TexCoords);
 }		
 )";
 
 		m_Shader = Fusion::Graphics::Shader::Create(vertexShaderSrc, fragmentShaderSrc);
+		m_Shader->SetInt("u_Texture", 0);
 	}
 
 	virtual void OnDetach()
@@ -75,6 +79,7 @@ void main()
 
 		m_VAO->Bind();
 		m_Shader->Bind();
+		m_Texture->Bind();
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 	}
 
@@ -87,6 +92,7 @@ private:
 	Fusion::Ref<Fusion::Graphics::VertexBuffer> m_VBO;
 	Fusion::Ref<Fusion::Graphics::IndexBuffer> m_IBO;
 	Fusion::Ref<Fusion::Graphics::Shader> m_Shader;
+	Fusion::Ref<Fusion::Graphics::Texture2D> m_Texture;
 };
 
 class Sandbox : public Fusion::Application
