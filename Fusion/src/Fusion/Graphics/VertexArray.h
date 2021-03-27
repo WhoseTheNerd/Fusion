@@ -18,6 +18,8 @@ namespace Fusion { namespace Graphics {
 		virtual void AddVertexBuffer(const Ref<VertexBuffer>& vb) = 0;
 		virtual void AddIndexBuffer(const Ref<IndexBuffer>& ib) = 0;
 
+		virtual Ref<IndexBuffer> GetIndexBuffer() = 0;
+
 		static Ref<VertexArray> Create();
 	};
 

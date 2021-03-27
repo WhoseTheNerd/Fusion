@@ -11,6 +11,7 @@ namespace Fusion { namespace Graphics {
 	}
 
 	OpenGLIndexBuffer::OpenGLIndexBuffer(const std::vector<uint32_t>& indices)
+		: m_Count(static_cast<uint32_t>(indices.size()))
 	{
 		glCreateBuffers(1, &m_BufferID);
 		glNamedBufferData(m_BufferID, indices.size() * sizeof(uint32_t), indices.data(), GL_STATIC_DRAW);

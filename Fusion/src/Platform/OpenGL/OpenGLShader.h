@@ -21,7 +21,7 @@ namespace Fusion { namespace Graphics {
 		virtual void SetFloat4(const std::string& name, const glm::vec4& value) override;
 		virtual void SetMat4(const std::string& name, const glm::mat4& value) override;
 	private:
-		uint32_t CompileShader(const char* source, uint32_t type);
+		uint32_t CompileShader(const char* source, const uint32_t type);
 		int GetUniformLocation(const std::string& name);
 	private:
 		uint32_t m_Program;

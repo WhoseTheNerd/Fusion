@@ -40,8 +40,8 @@ namespace Fusion { namespace Graphics {
 
 		VertexBufferElement() = default;
 
-		VertexBufferElement(ShaderDataType type, const std::string& name, bool normalized = false)
-			: Type(type), Name(name), Normalized(normalized), Offset(0)
+		VertexBufferElement(ShaderDataType type, std::string&& name, bool normalized = false)
+			: Type(type), Name(std::move(name)), Normalized(normalized), Offset(0)
 		{
 			Size = ShaderDataTypeSize(type);
 		}

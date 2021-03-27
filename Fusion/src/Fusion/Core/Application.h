@@ -16,14 +16,15 @@ namespace Fusion {
 
 		void Run();
 
-		void PushLayer(Layer* layer);
-		void PushOverlay(Layer* overlay);
-		void PopLayer(Layer* layer);
-		void PopOverlay(Layer* overlay);
+		void PushLayer(Ref<Layer> layer);
+		void PushOverlay(Ref<Layer> overlay);
+		void PopLayer(Ref<Layer> layer);
+		void PopOverlay(Ref<Layer> overlay);
 
 		void OnEvent(Event& e);
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
+		bool OnWindowResize(WindowResizeEvent& e);
 	private:
 		Scope<Window> m_Window;
 		bool m_Running = true;

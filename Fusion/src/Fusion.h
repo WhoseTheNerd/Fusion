@@ -12,3 +12,4 @@
 #include "Fusion/Graphics/VertexArray.h"
 #include "Fusion/Graphics/Shader.h"
 #include "Fusion/Graphics/Texture.h"
+#include "Fusion/Graphics/RenderCommand.h"

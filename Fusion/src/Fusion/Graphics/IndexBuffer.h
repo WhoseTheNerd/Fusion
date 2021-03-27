@@ -13,6 +13,7 @@ namespace Fusion { namespace Graphics {
 		virtual void Unbind() = 0;
 		
 		virtual uint32_t GetBufferHandle() const = 0;
+		virtual uint32_t GetCount() const = 0;
 
 		static Ref<IndexBuffer> Create(const std::vector<uint32_t>& indices);
 	};

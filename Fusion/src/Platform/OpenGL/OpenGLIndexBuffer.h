@@ -14,8 +14,10 @@ namespace Fusion { namespace Graphics {
 		virtual void Unbind() override;
 
 		virtual uint32_t GetBufferHandle() const override { return m_BufferID; }
+		virtual uint32_t GetCount() const override { return m_Count; }
 	private:
 		uint32_t m_BufferID;
+		uint32_t m_Count;
 	};
 
 } }

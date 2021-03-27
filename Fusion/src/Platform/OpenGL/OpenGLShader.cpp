@@ -48,7 +48,7 @@ namespace Fusion { namespace Graphics {
 		glDeleteShader(fragmentShader);
 	}
 
-	uint32_t OpenGLShader::CompileShader(const char* source, uint32_t type)
+	uint32_t OpenGLShader::CompileShader(const char* source, const uint32_t type)
 	{
 		uint32_t shader = glCreateShader(type);
 		glShaderSource(shader, 1, &source, NULL);

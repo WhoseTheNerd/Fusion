@@ -76,6 +76,7 @@ namespace Fusion { namespace Graphics {
 	void OpenGLVertexArray::AddIndexBuffer(const Ref<IndexBuffer>& ib)
 	{
 		glVertexArrayElementBuffer(m_ArrayID, ib->GetBufferHandle());
+		m_IndexBuffer = ib;
 	}
 
 } }

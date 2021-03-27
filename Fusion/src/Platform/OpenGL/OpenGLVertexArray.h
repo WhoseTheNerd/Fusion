@@ -15,9 +15,12 @@ namespace Fusion { namespace Graphics {
 
 		virtual void AddVertexBuffer(const Ref<VertexBuffer>& vb) override;
 		virtual void AddIndexBuffer(const Ref<IndexBuffer>& ib) override;
+
+		virtual Ref<IndexBuffer> GetIndexBuffer() override { return m_IndexBuffer; }
 	private:
 		uint32_t m_ArrayID;
 		uint32_t m_VertexBufferIndex = 0;
+		Ref<IndexBuffer> m_IndexBuffer;
 	};
 
 } }
