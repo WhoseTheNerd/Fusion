@@ -2,7 +2,6 @@
 #include "OpenGLShader.h"
 
 #include <glad/glad.h>
-
 #include <glm/gtc/type_ptr.hpp>
 
 namespace Fusion { namespace Graphics {
@@ -14,66 +13,27 @@ namespace Fusion { namespace Graphics {
 
 	OpenGLShader::OpenGLShader(const std::string& vertexSrc, const std::string& fragmentSrc)
 	{
-		// TODO: Clean up
+		uint32_t vertexShader = CompileShader(vertexSrc.c_str(), GL_VERTEX_SHADER);
+		uint32_t fragmentShader = CompileShader(fragmentSrc.c_str(), GL_FRAGMENT_SHADER);
 
-		const char* vertexSource = vertexSrc.c_str();
-		uint32_t vertexShader = glCreateShader(GL_VERTEX_SHADER);
-		glShaderSource(vertexShader, 1, &vertexSource, NULL);
-		glCompileShader(vertexShader);
-		int compiled = 0;
-		glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &compiled);
-		if (compiled == GL_FALSE)
-		{
-			int maxLength = 0;
-			glGetShaderiv(vertexShader, GL_INFO_LOG_LENGTH, &maxLength);
+		m_Program = glCreateProgram();
 
-			std::vector<char> infoLog(maxLength);
-			glGetShaderInfoLog(vertexShader, maxLength, &maxLength, &infoLog[0]);
+		glAttachShader(m_Program, vertexShader);
+		glAttachShader(m_Program, fragmentShader);
 
-			glDeleteShader(vertexShader);
-
-			F_CORE_ERROR("{0}", infoLog.data());
-			F_CORE_ASSERT(false, "Vertex shader compilation failed!");
-		}
-		
-		const char* fragmentSource = fragmentSrc.c_str();
-		uint32_t fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-		glShaderSource(fragmentShader, 1, &fragmentSource, NULL);
-		glCompileShader(fragmentShader);
-		
-		compiled = 0;
-		glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &compiled);
-		if (compiled == GL_FALSE)
-		{
-			int maxLength = 0;
-			glGetShaderiv(fragmentShader, GL_INFO_LOG_LENGTH, &maxLength);
-
-			std::vector<char> infoLog(maxLength);
-			glGetShaderInfoLog(fragmentShader, maxLength, &maxLength, &infoLog[0]);
-
-			glDeleteShader(fragmentShader);
-
-			F_CORE_ERROR("{0}", infoLog.data());
-			F_CORE_ASSERT(false, "Fragment shader compilation failed!");
-		}
-
-		m_ShaderProgram = glCreateProgram();
-		glAttachShader(m_ShaderProgram, vertexShader);
-		glAttachShader(m_ShaderProgram, fragmentShader);
-
-		glLinkProgram(m_ShaderProgram);
+		glLinkProgram(m_Program);
 
 		int linked = 0;
-		glGetProgramiv(m_ShaderProgram, GL_LINK_STATUS, &linked);
+		glGetProgramiv(m_Program, GL_LINK_STATUS, &linked);
 		if (linked == GL_FALSE)
 		{
 			int maxLength = 0;
-			glGetProgramiv(m_ShaderProgram, GL_INFO_LOG_LENGTH, &maxLength);
+			glGetProgramiv(m_Program, GL_INFO_LOG_LENGTH, &maxLength);
 
 			std::vector<char> infoLog(maxLength);
-			glGetProgramInfoLog(m_ShaderProgram, maxLength, &maxLength, &infoLog[0]);
+			glGetProgramInfoLog(m_Program, maxLength, &maxLength, &infoLog[0]);
 
-			glDeleteProgram(m_ShaderProgram);
+			glDeleteProgram(m_Program);
 
 			glDeleteShader(vertexShader);
 			glDeleteShader(fragmentShader);
@@ -82,20 +42,44 @@ namespace Fusion { namespace Graphics {
 			F_CORE_ASSERT(false, "Shader linking failed!");
 		}
 
-		glDetachShader(m_ShaderProgram, vertexShader);
-		glDetachShader(m_ShaderProgram, fragmentShader);
+		glDetachShader(m_Program, vertexShader);
+		glDetachShader(m_Program, fragmentShader);
 		glDeleteShader(vertexShader);
 		glDeleteShader(fragmentShader);
 	}
 
+	uint32_t OpenGLShader::CompileShader(const char* source, uint32_t type)
+	{
+		uint32_t shader = glCreateShader(type);
+		glShaderSource(shader, 1, &source, NULL);
+		glCompileShader(shader);
+		int compiled = 0;
+		glGetShaderiv(shader, GL_COMPILE_STATUS, &compiled);
+		if (compiled == GL_FALSE)
+		{
+			int maxLength = 0;
+			glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &maxLength);
+
+			std::vector<char> infoLog(maxLength);
+			glGetShaderInfoLog(shader, maxLength, &maxLength, &infoLog[0]);
+
+			glDeleteShader(shader);
+
+			F_CORE_ERROR("{0}", infoLog.data());
+			F_CORE_ASSERT(false, "Shader compilation failed!");
+			return 0;
+		}
+		return shader;
+	}
+
 	OpenGLShader::~OpenGLShader()
 	{
-		glDeleteProgram(m_ShaderProgram);
+		glDeleteProgram(m_Program);
 	}
 
 	void OpenGLShader::Bind()
 	{
-		glUseProgram(m_ShaderProgram);
+		glUseProgram(m_Program);
 	}
 
 	void OpenGLShader::Unbind()
@@ -105,44 +89,49 @@ namespace Fusion { namespace Graphics {
 
 	void OpenGLShader::SetInt(const std::string& name, const int value)
 	{
-		GLint location = glGetUniformLocation(m_ShaderProgram, name.c_str());
-		glUniform1i(location, value);
+		int location = GetUniformLocation(name);
+		glProgramUniform1i(m_Program, location, value);
 	}
 
 	void OpenGLShader::SetIntArray(const std::string& name, const int* const values, const uint32_t count)
 	{
-		GLint location = glGetUniformLocation(m_ShaderProgram, name.c_str());
-		glUniform1iv(location, count, values);
+		int location = GetUniformLocation(name);
+		glProgramUniform1iv(m_Program, location, count, values);
 	}
 
 	void OpenGLShader::SetFloat(const std::string& name, float value)
 	{
-		GLint location = glGetUniformLocation(m_ShaderProgram, name.c_str());
-		glUniform1f(location, value);
+		int location = GetUniformLocation(name);
+		glProgramUniform1f(m_Program, location, value);
 	}
 
 	void OpenGLShader::SetFloat2(const std::string& name, const glm::vec2& value)
 	{
-		GLint location = glGetUniformLocation(m_ShaderProgram, name.c_str());
-		glUniform2f(location, value.x, value.y);
+		int location = GetUniformLocation(name);
+		glProgramUniform2f(m_Program, location, value.x, value.y);
 	}
 
 	void OpenGLShader::SetFloat3(const std::string& name, const glm::vec3& value)
 	{
-		GLint location = glGetUniformLocation(m_ShaderProgram, name.c_str());
-		glUniform3f(location, value.x, value.y, value.z);
+		int location = GetUniformLocation(name);
+		glProgramUniform3f(m_Program, location, value.x, value.y, value.z);
 	}
 
 	void OpenGLShader::SetFloat4(const std::string& name, const glm::vec4& value)
 	{
-		GLint location = glGetUniformLocation(m_ShaderProgram, name.c_str());
-		glUniform4f(location, value.x, value.y, value.z, value.w);
+		int location = GetUniformLocation(name);
+		glProgramUniform4f(m_Program, location, value.x, value.y, value.z, value.w);
 	}
 
 	void OpenGLShader::SetMat4(const std::string& name, const glm::mat4& value)
 	{
-		GLint location = glGetUniformLocation(m_ShaderProgram, name.c_str());
-		glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(value));
+		int location = GetUniformLocation(name);
+		glProgramUniformMatrix4fv(m_Program, location, 1, GL_FALSE, glm::value_ptr(value));
+	}
+
+	int OpenGLShader::GetUniformLocation(const std::string& name)
+	{
+		return glGetUniformLocation(m_Program, name.c_str());
 	}
 
 } }
