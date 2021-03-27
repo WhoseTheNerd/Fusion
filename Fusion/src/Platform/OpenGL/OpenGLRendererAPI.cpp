@@ -5,6 +5,26 @@
 
 namespace Fusion { namespace Graphics {
 
+	void OpenGLMessageCallback(
+		unsigned source,
+		unsigned type,
+		unsigned id,
+		unsigned severity,
+		int length,
+		const char* message,
+		const void* userParam)
+	{
+		switch (severity)
+		{
+		case GL_DEBUG_SEVERITY_HIGH:         F_CORE_CRITICAL(message); return;
+		case GL_DEBUG_SEVERITY_MEDIUM:       F_CORE_ERROR(message); return;
+		case GL_DEBUG_SEVERITY_LOW:          F_CORE_WARN(message); return;
+		case GL_DEBUG_SEVERITY_NOTIFICATION: F_CORE_TRACE(message); return;
+		}
+
+		F_CORE_ASSERT(false, "Unknown severity level!");
+	}
+
 	Scope<RendererAPI> RendererAPI::Create()
 	{
 		return CreateScope<OpenGLRendererAPI>();
@@ -12,7 +32,12 @@ namespace Fusion { namespace Graphics {
 
 	void OpenGLRendererAPI::Init()
 	{
-
+#ifdef F_DEBUG
+		glEnable(GL_DEBUG_OUTPUT);
+		glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
+		glDebugMessageCallback(OpenGLMessageCallback, nullptr);
+		glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, nullptr, GL_TRUE);
+#endif
 	}
 
 	void OpenGLRendererAPI::SetViewport(uint32_t x, uint32_t y, uint32_t width, uint32_t height)

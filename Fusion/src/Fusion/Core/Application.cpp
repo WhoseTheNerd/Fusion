@@ -11,6 +11,7 @@ namespace Fusion {
 	{
 		m_Window = Window::Create();
 		m_Window->SetEventCallback(F_BIND_EVENT_FN(Application::OnEvent));
+		Fusion::Graphics::RenderCommand::Init();
 	}
 
 	Application::~Application()

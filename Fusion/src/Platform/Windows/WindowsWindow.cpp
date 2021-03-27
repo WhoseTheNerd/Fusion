@@ -25,7 +25,9 @@ namespace Fusion {
 			F_CORE_ASSERT(status, "Failed to initialize GLFW!");
 			s_GLFWInitialized = true;
 		}
-
+#ifdef F_DEBUG
+		glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GLFW_TRUE);
+#endif
 		m_Window = glfwCreateWindow(props.Width, props.Height, m_Data.Title.c_str(), NULL, NULL);
 		F_CORE_ASSERT(m_Window, "Failed to create Window");
 
