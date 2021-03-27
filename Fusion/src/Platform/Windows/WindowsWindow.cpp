@@ -11,6 +11,11 @@ namespace Fusion {
 
 	static bool s_GLFWInitialized = false;
 
+	static void GLFWErrorCallback(int error, const char* description)
+	{
+		F_CORE_ERROR("GLFW Error ({0}): {1}", error, description);
+	}
+
 	Scope<Window> Window::Create(const WindowProps& props)
 	{
 		return CreateScope<WindowsWindow>(props);
@@ -24,6 +29,7 @@ namespace Fusion {
 			const int status = glfwInit();
 			F_CORE_ASSERT(status, "Failed to initialize GLFW!");
 			s_GLFWInitialized = true;
+			glfwSetErrorCallback(GLFWErrorCallback);
 		}
 #ifdef F_DEBUG
 		glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GLFW_TRUE);
