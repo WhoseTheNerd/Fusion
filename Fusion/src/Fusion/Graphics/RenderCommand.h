@@ -41,7 +41,7 @@ namespace Fusion { namespace Graphics {
 			s_RendererAPI->DrawIndexed(vao);
 		}
 	private:
-		static Scope<RendererAPI> s_RendererAPI;
+		static inline Scope<RendererAPI> s_RendererAPI{ RendererAPI::Create() };
 	};
 
 } }
