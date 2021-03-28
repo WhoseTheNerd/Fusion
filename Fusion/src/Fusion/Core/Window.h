@@ -28,6 +28,8 @@ namespace Fusion {
 		virtual uint32_t GetWidth() const = 0;
 		virtual uint32_t GetHeight() const = 0;
 
+		virtual void* GetWindowHandle() = 0;
+
 		virtual void SetEventCallback(const EventCallbackFn& callback) = 0;
 
 		static Scope<Window> Create(const WindowProps& props = WindowProps());

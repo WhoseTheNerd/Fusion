@@ -7,8 +7,13 @@
 
 namespace Fusion {
 
+	Application* Application::s_Instance;
+
 	Application::Application()
 	{
+		F_CORE_ASSERT(!s_Instance, "Application already exists!");
+		s_Instance = this;
+
 		m_Window = Window::Create();
 		m_Window->SetEventCallback(F_BIND_EVENT_FN(Application::OnEvent));
 		Fusion::Graphics::RenderCommand::Init();
@@ -76,6 +81,6 @@ namespace Fusion {
 	bool Application::OnWindowResize(WindowResizeEvent& e)
 	{
 		Graphics::RenderCommand::SetViewport(0, 0, e.GetWidth(), e.GetHeight());
-		return true;
+		return false;
 	}
 }

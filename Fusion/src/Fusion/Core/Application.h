@@ -22,6 +22,9 @@ namespace Fusion {
 		void PopOverlay(Ref<Layer> overlay);
 
 		void OnEvent(Event& e);
+
+		static Application* Get() { return s_Instance; }
+		Window& GetWindow() { return *m_Window; }
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
 		bool OnWindowResize(WindowResizeEvent& e);
@@ -30,6 +33,8 @@ namespace Fusion {
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 		float m_LastFrameTime = 0.0f;
+
+		static Application* s_Instance;
 	};
 
 	// Client defines this!

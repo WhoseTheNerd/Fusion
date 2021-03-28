@@ -29,7 +29,7 @@ namespace Fusion {
 			const int status = glfwInit();
 			F_CORE_ASSERT(status, "Failed to initialize GLFW!");
 			s_GLFWInitialized = true;
-			glfwSetErrorCallback(GLFWErrorCallback);
+			glfwSetErrorCallback(GLFWErrorCallback); 
 		}
 #ifdef F_DEBUG
 		glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GLFW_TRUE);
