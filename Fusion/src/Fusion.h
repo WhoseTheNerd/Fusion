@@ -21,3 +21,4 @@
 #include "Fusion/Graphics/Texture.h"
 #include "Fusion/Graphics/RenderCommand.h"
 #include "Fusion/Graphics/OrthographicCameraController.h"
+#include "Fusion/Graphics/Renderer2D.h"

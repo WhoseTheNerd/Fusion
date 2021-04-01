@@ -36,9 +36,14 @@ namespace Fusion { namespace Graphics {
 			s_RendererAPI->Clear();
 		}
 
-		static void DrawIndexed(const Ref<VertexArray>& vao)
+		static void DrawIndexed(Ref<VertexArray> vao)
 		{
 			s_RendererAPI->DrawIndexed(vao);
+		}
+
+		static void DrawIndexed(Ref<VertexArray> vao, uint32_t count)
+		{
+			s_RendererAPI->DrawIndexed(vao, count);
 		}
 	private:
 		static inline Scope<RendererAPI> s_RendererAPI{ RendererAPI::Create() };

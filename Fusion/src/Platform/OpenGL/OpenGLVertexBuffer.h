@@ -8,10 +8,13 @@ namespace Fusion { namespace Graphics {
 	{
 	public:
 		OpenGLVertexBuffer(const std::vector<float>& vertices);
+		OpenGLVertexBuffer(uint32_t size);
 		virtual ~OpenGLVertexBuffer();
 
 		virtual void Bind() override;
 		virtual void Unbind() override;
+
+		virtual void SetData(const void* data, uint32_t size) override;
 
 		virtual const VertexBufferLayout& GetLayout() const override { return m_Layout; }
 		virtual void SetLayout(const VertexBufferLayout& layout) override { m_Layout = layout; }

@@ -5,13 +5,13 @@
 
 namespace Fusion { namespace Graphics {
 
-	OrthographicCamera::OrthographicCamera(const float const left, const float right, const float bottom, const float top)
-		: Camera(glm::ortho(left, right, bottom, top, -1.0f, 1.0f))
+	OrthographicCamera::OrthographicCamera(const float left, const float right, const float bottom, const float top)
+		: Camera(glm::ortho(left, right, bottom, top, -1.0f, 1.0f), glm::mat4(1.0f))
 	{
 
 	}
 
-	void OrthographicCamera::SetProjection(const float const left, const float right, const float bottom, const float top)
+	void OrthographicCamera::SetProjection(const float left, const float right, const float bottom, const float top)
 	{
 		m_ProjectionMatrix = glm::ortho(left, right, bottom, top, -1.0f, 1.0f);
 	}

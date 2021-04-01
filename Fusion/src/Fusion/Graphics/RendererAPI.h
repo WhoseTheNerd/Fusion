@@ -19,7 +19,8 @@ namespace Fusion { namespace Graphics {
 		virtual void SetClearColor(const glm::vec4& color) = 0;
 		virtual void Clear() = 0;
 
-		virtual void DrawIndexed(const Ref<VertexArray>& vao) = 0;
+		virtual void DrawIndexed(Ref<VertexArray> vao) = 0;
+		virtual void DrawIndexed(Ref<VertexArray> vao, uint32_t count) = 0;
 		
 		static Scope<RendererAPI> Create();
 	};
