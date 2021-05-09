@@ -4,7 +4,7 @@
 
 namespace Fusion {
 	
-	class Timestep
+	class F_API Timestep
 	{
 	public:
 		Timestep(const float time = 0.0f)

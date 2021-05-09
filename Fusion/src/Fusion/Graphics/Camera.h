@@ -6,7 +6,7 @@
 
 namespace Fusion { namespace Graphics {
 
-	class Camera
+	class F_API Camera
 	{
 	public:
 		Camera() = default;

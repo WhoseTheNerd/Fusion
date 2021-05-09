@@ -6,7 +6,7 @@
 
 namespace Fusion {
 
-	class Layer
+	class F_API Layer
 	{
 	public:
 		virtual ~Layer() = default;

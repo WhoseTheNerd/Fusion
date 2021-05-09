@@ -1,8 +1,8 @@
 project "Fusion"
-	kind "StaticLib"
+	kind "SharedLib"
 	language "C++"
 	cppdialect "C++17"
-	staticruntime "on"
+	staticruntime "off"
 
 	targetdir ("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("%{wks.location}/bin-int/" .. outputdir .. "/%{prj.name}")
@@ -32,7 +32,8 @@ project "Fusion"
 	{
 		"_CRT_SECURE_NO_WARNINGS",
 		"GLFW_INCLUDE_NONE",
-		"GLFW_DLL"
+		"GLFW_DLL",
+		"F_BUILD_DLL"
 	}
 
 	links
@@ -41,8 +42,14 @@ project "Fusion"
 		"Glad"
 	}
 
+	postbuildcommands
+	{
+		("{COPY} %{cfg.buildtarget.relpath} \"%{wks.location}/bin/" .. outputdir .. "/Sandbox/\"")
+	}
+
 	filter "system:windows"
 		systemversion "latest"
+		disablewarnings "4251"
 	
 	filter "configurations:Debug"
 		defines "F_DEBUG"

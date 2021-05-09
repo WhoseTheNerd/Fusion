@@ -8,7 +8,7 @@
 
 namespace Fusion { namespace Graphics {
 
-	class RendererAPI
+	class F_API RendererAPI
 	{
 	public:
 		virtual ~RendererAPI() = default;

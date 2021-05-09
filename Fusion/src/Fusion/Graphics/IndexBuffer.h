@@ -4,7 +4,7 @@
 
 namespace Fusion { namespace Graphics {
 
-	class IndexBuffer
+	class F_API IndexBuffer
 	{
 	public:
 		virtual ~IndexBuffer() = default;

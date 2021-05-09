@@ -9,7 +9,7 @@
 
 namespace Fusion { namespace Graphics {
 
-	class OrthographicCameraController
+	class F_API OrthographicCameraController
 	{
 	public:
 		OrthographicCameraController(const float aspectRatio);

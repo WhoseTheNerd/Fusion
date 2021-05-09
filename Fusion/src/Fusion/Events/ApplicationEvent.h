@@ -4,7 +4,7 @@
 
 namespace Fusion {
 
-	class WindowResizeEvent : public Event
+	class F_API WindowResizeEvent : public Event
 	{
 	public:
 		WindowResizeEvent(const uint32_t width, const uint32_t height)
@@ -28,7 +28,7 @@ namespace Fusion {
 		uint32_t m_Height;
 	};
 
-	class WindowCloseEvent : public Event
+	class F_API WindowCloseEvent : public Event
 	{
 	public:
 		WindowCloseEvent() = default;
@@ -37,7 +37,7 @@ namespace Fusion {
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
 
-	class AppTickEvent : public Event
+	class F_API AppTickEvent : public Event
 	{
 	public:
 		AppTickEvent() = default;
@@ -46,7 +46,7 @@ namespace Fusion {
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
 
-	class AppUpdateEvent : public Event
+	class F_API AppUpdateEvent : public Event
 	{
 	public:
 		AppUpdateEvent() = default;
@@ -55,7 +55,7 @@ namespace Fusion {
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
 
-	class AppRenderEvent : public Event
+	class F_API AppRenderEvent : public Event
 	{
 	public:
 		AppRenderEvent() = default;

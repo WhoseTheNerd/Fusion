@@ -7,9 +7,23 @@
 #ifdef F_DEBUG
 	#if defined(F_PLATFORM_WINDOWS)
 		#define F_DEBUGBREAK() __debugbreak()
+		#if defined(F_BUILD_DLL)
+			#define F_API __declspec(dllexport)
+		#elif defined(F_DLL)
+			#define F_API __declspec(dllimport)
+		#else
+			#define F_API
+		#endif
 	#elif defined(F_PLATFORM_LINUX)
 		#include <signal.h>
 		#define F_DEBUGBREAK() raise(SIGTRAP)
+		#if defined(F_BUILD_DLL)
+			#define F_API __attribute__((visibility("default")))
+		#elif defined(F_DLL)
+			#define F_API
+		#else
+			#define F_API
+		#endif
 	#else
 		#error "Platform doesn't support debugbreak yet"
 	#endif

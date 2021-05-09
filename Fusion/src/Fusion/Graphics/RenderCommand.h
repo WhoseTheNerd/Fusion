@@ -8,7 +8,7 @@
 
 namespace Fusion { namespace Graphics {
 
-	class RenderCommand
+	class F_API RenderCommand
 	{
 	public:
 		static void Init()

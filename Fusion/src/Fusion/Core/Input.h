@@ -9,7 +9,7 @@
 
 namespace Fusion {
 
-	class Input
+	class F_API Input
 	{
 	public:
 		static bool IsKeyPressed(const KeyCode key);

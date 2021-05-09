@@ -4,7 +4,7 @@
 
 namespace Fusion { namespace Graphics {
 
-	class OrthographicCamera : public Camera
+	class F_API OrthographicCamera : public Camera
 	{
 	public:
 		OrthographicCamera() = default;

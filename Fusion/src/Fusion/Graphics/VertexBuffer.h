@@ -6,7 +6,7 @@
 
 namespace Fusion { namespace Graphics {
 
-	class VertexBuffer
+	class F_API VertexBuffer
 	{
 	public:
 		virtual ~VertexBuffer() = default;

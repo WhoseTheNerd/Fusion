@@ -9,7 +9,7 @@
 
 namespace Fusion { namespace Graphics {
 
-	class Renderer2D
+	class F_API Renderer2D
 	{
 	public:
 		static void Init();

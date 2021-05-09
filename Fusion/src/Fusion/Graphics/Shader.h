@@ -6,7 +6,7 @@
 
 namespace Fusion { namespace Graphics {
 
-	class Shader
+	class F_API Shader
 	{
 	public:
 		virtual ~Shader() = default;

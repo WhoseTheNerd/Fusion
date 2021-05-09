@@ -5,7 +5,7 @@
 
 namespace Fusion {
 
-	struct WindowProps
+	struct F_API WindowProps
 	{
 		std::string Title;
 		uint32_t Width;
@@ -16,7 +16,7 @@ namespace Fusion {
 		{ }
 	};
 
-	class Window
+	class F_API Window
 	{
 	public:
 		using EventCallbackFn = std::function<void(Event&)>;

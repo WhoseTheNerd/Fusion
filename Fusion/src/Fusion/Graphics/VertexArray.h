@@ -7,7 +7,7 @@
 
 namespace Fusion { namespace Graphics {
 
-	class VertexArray
+	class F_API VertexArray
 	{
 	public:
 		virtual ~VertexArray() = default;

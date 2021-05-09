@@ -4,7 +4,7 @@
 
 namespace Fusion { namespace Graphics {
 
-	class Texture
+	class F_API Texture
 	{
 	public:
 		virtual ~Texture() = default;
@@ -18,7 +18,7 @@ namespace Fusion { namespace Graphics {
 		virtual bool operator==(const Texture& other) const = 0;
 	};
 
-	class Texture2D : public Texture
+	class F_API Texture2D : public Texture
 	{
 	public:
 		static Ref<Texture2D> Create(const std::string& path);

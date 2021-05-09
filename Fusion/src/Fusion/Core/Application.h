@@ -8,7 +8,7 @@
 
 namespace Fusion {
 
-	class Application
+	class F_API Application
 	{
 	public:
 		Application();

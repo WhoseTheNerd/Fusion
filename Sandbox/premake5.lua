@@ -29,11 +29,13 @@ project "Sandbox"
 	defines
 	{
 		"_CRT_SECURE_NO_WARNINGS",
-		"GLFW_DLL"
+		"GLFW_DLL",
+		"F_DLL"
 	}
 
 	filter "system:windows"
 		systemversion "latest"
+		disablewarnings "4251"
 	
 	filter "configurations:Debug"
 		defines "F_DEBUG"

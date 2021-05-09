@@ -4,7 +4,7 @@
 
 namespace Fusion { namespace Graphics {
 
-	class Context
+	class F_API Context
 	{
 	public:
 		virtual ~Context() = default;

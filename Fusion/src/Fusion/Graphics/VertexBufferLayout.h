@@ -30,7 +30,7 @@ namespace Fusion { namespace Graphics {
 		return 0;
 	}
 
-	struct VertexBufferElement
+	struct F_API VertexBufferElement
 	{
 		std::string Name;
 		ShaderDataType Type;
@@ -68,7 +68,7 @@ namespace Fusion { namespace Graphics {
 		}
 	};
 
-	class VertexBufferLayout
+	class F_API VertexBufferLayout
 	{
 	public:
 		VertexBufferLayout(std::initializer_list<VertexBufferElement> elements)

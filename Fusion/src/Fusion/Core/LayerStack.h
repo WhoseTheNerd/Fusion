@@ -7,7 +7,7 @@
 
 namespace Fusion {
 
-	class LayerStack
+	class F_API LayerStack
 	{
 	public:
 		void PushLayer(Ref<Layer> layer);

@@ -6,7 +6,7 @@
 
 namespace Fusion {
 
-	class KeyEvent : public Event
+	class F_API KeyEvent : public Event
 	{
 	public:
 		KeyCode GetKeyCode() const { return m_KeyCode; }
@@ -19,7 +19,7 @@ namespace Fusion {
 		KeyCode m_KeyCode;
 	};
 
-	class KeyPressedEvent : public KeyEvent
+	class F_API KeyPressedEvent : public KeyEvent
 	{
 	public:
 		KeyPressedEvent(const KeyCode keycode, const uint32_t repeatCount)
@@ -39,7 +39,7 @@ namespace Fusion {
 		uint32_t m_RepeatCount;
 	};
 
-	class KeyReleasedEvent : public KeyEvent
+	class F_API KeyReleasedEvent : public KeyEvent
 	{
 	public:
 		KeyReleasedEvent(const KeyCode keycode)
