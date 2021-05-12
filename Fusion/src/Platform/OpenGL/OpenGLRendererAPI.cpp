@@ -23,7 +23,7 @@ namespace Fusion { namespace Graphics {
 		case GL_DEBUG_SEVERITY_HIGH:         F_CORE_CRITICAL(message); return;
 		case GL_DEBUG_SEVERITY_MEDIUM:       F_CORE_ERROR(message); return;
 		case GL_DEBUG_SEVERITY_LOW:          F_CORE_WARN(message); return;
-		case GL_DEBUG_SEVERITY_NOTIFICATION: F_CORE_TRACE(message); return;
+		case GL_DEBUG_SEVERITY_NOTIFICATION: /*F_CORE_TRACE(message);*/ return;
 		}
 
 		F_CORE_ASSERT(false, "Unknown severity level!");

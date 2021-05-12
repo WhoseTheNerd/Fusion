@@ -129,7 +129,6 @@ void main()
 
 		s_Data.Shader = Fusion::Graphics::Shader::Create(vertexShaderSrc, fragmentShaderSrc);
 		s_Data.Shader->Bind();
-		s_Data.Shader->SetInt("u_Texture", 0);
 
 		int32_t samplers[s_Data.MaxTextureSlots];
 		for (uint32_t i = 0; i < s_Data.MaxTextureSlots; i++)

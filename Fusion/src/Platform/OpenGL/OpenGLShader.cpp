@@ -131,7 +131,9 @@ namespace Fusion { namespace Graphics {
 
 	int OpenGLShader::GetUniformLocation(const char* name)
 	{
-		return glGetUniformLocation(m_Program, name);
+		int location = glGetUniformLocation(m_Program, name);
+		F_CORE_ASSERT(location > 0, "Uniform doesn't exist!");
+		return location;
 	}
 
 } }
