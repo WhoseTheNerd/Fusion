@@ -14,6 +14,10 @@ namespace Fusion { namespace Graphics {
 		const char* message,
 		const void* userParam)
 	{
+		if (strncmp(message, "Texture state usage warning", 27) == 0) {
+			return;
+		}
+
 		switch (severity)
 		{
 		case GL_DEBUG_SEVERITY_HIGH:         F_CORE_CRITICAL(message); return;

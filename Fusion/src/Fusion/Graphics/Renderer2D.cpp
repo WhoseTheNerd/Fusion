@@ -231,7 +231,7 @@ void main()
 		if (s_Data.QuadIndexCount >= s_Data.MaxIndices)
 			NextBatch();
 
-		float textureIndex = 0.0f;
+		float textureIndex = -1.0f;
 		for (uint32_t i = 0; i < s_Data.TextureSlotIndex; i++)
 		{
 			if (*s_Data.TextureSlots[i] == *texture)
@@ -241,7 +241,7 @@ void main()
 			}
 		}
 
-		if (textureIndex == 0.0f)
+		if (textureIndex < 0.0f)
 		{
 			if (s_Data.TextureSlotIndex >= s_Data.MaxTextureSlots)
 				NextBatch();
