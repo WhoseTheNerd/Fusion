@@ -1,8 +1,8 @@
 project "Fusion-Audio"
-    kind "SharedLib"
+    kind "StaticLib"
     language "C++"
     cppdialect "C++17"
-    staticruntime "off"
+    staticruntime "on"
 
     targetdir ("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("%{wks.location}/bin-int/" .. outputdir .. "/%{prj.name}")
@@ -24,13 +24,7 @@ project "Fusion-Audio"
 
     defines
 	{
-		"_CRT_SECURE_NO_WARNINGS",
-        "F_BUILD_DLL"
-	}
-
-    postbuildcommands
-	{
-		("{COPY} %{cfg.buildtarget.relpath} \"%{wks.location}/bin/" .. outputdir .. "/Sandbox/\"")
+		"_CRT_SECURE_NO_WARNINGS"
 	}
 
     libdirs "C:\\Program Files (x86)\\OpenAL 1.1 SDK\\libs\\Win64"
@@ -42,10 +36,8 @@ project "Fusion-Audio"
         "OpenAL32.lib"
     }
 
-
     filter "system:windows"
         systemversion "latest"
-        disablewarnings "4251"
 
     filter "configurations:Debug"
         defines "F_DEBUG"

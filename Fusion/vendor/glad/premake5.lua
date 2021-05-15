@@ -1,7 +1,7 @@
 project "glad"
-    kind "SharedLib"
+    kind "StaticLib"
     language "C"
-    staticruntime "off"
+    staticruntime "on"
 
     targetdir ("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
     objdir ("%{wks.location}/bin-int/" .. outputdir .. "/%{prj.name}")
@@ -17,17 +17,6 @@ project "glad"
     {
         "include"
     }
-
-    defines
-    {
-        "GLAD_GLAPI_EXPORT",
-        "GLAD_GLAPI_EXPORT_BUILD"
-    }
-
-    postbuildcommands
-	{
-		("{COPY} %{cfg.buildtarget.relpath} \"%{wks.location}/bin/" .. outputdir .. "/Sandbox/\"")
-	}
 
     filter "system:windows"
         systemversion "latest"
