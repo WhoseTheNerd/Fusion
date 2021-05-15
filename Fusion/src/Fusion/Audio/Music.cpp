@@ -1,3 +1,4 @@
+#include "fpch.h"
 #include "Music.hpp"
 
 #include "wave_reader.hpp"
@@ -108,9 +109,11 @@ namespace Fusion {namespace Audio {
 		do
 		{
 			std::this_thread::sleep_for(std::chrono::microseconds(1));
+
 			std::lock_guard lock(m_Mutex);
 			state = m_Source.GetSourceState();
-		} 		while (state == SourceState::Playing);
+		} 		
+		while (state == SourceState::Playing);
 	}
 
 	void Music::MusicPlayerThread()

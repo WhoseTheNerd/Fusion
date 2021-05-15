@@ -18,7 +18,7 @@ namespace Fusion { namespace Audio {
 	extern error_cb_t error_callback;
 
 	// RAII
-	class F_API System
+	class System
 	{
 	public:
 		System();

@@ -24,8 +24,7 @@ project "Sandbox"
 
 	links
 	{
-		"Fusion",
-		"Fusion-Audio"
+		"Fusion"
 	}
 
 	defines
@@ -35,7 +34,6 @@ project "Sandbox"
 
 	filter "system:windows"
 		systemversion "latest"
-		disablewarnings "4251"
 	
 	filter "configurations:Debug"
 		defines "F_DEBUG"

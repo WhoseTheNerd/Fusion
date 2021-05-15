@@ -13,6 +13,7 @@ project "Fusion"
 	files
 	{
 		"src/**.h",
+		"src/**.hpp",
 		"src/**.cpp",
 		"vendor/stb_image/**.h",
 		"vendor/stb_image/**.cpp"
@@ -25,7 +26,10 @@ project "Fusion"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.GLM}",
-		"%{IncludeDir.stb_image}"
+		"%{IncludeDir.stb_image}",
+		"%{IncludeDir.ogg}",
+		"%{IncludeDir.vorbis}",
+		"%{IncludeDir.openal}"
 	}
 	
 	defines
@@ -34,10 +38,15 @@ project "Fusion"
 		"GLFW_INCLUDE_NONE"
 	}
 
+	libdirs "C:\\Program Files (x86)\\OpenAL 1.1 SDK\\libs\\Win64"
+
 	links
 	{
 		"glfw3",
-		"glad"
+		"glad",
+		"ogg",
+		"vorbis",
+		"OpenAL32.lib"
 	}
 
 	filter "system:windows"

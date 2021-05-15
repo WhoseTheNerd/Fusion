@@ -5,7 +5,7 @@
 
 namespace Fusion { namespace Audio {
 
-	class F_API Sound
+	class Sound
 	{
 	public:
 		Sound(const char* filepath);

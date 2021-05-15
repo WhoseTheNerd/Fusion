@@ -14,7 +14,7 @@
 
 namespace Fusion {
 
-	class F_API VorbisReader : public Reader
+	class VorbisReader : public Reader
 	{
 	public:
 		VorbisReader(const char* filepath);

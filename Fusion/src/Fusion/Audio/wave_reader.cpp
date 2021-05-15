@@ -1,3 +1,4 @@
+#include "fpch.h"
 #include "wave_reader.hpp"
 
 #include <cstdlib>
@@ -75,7 +76,7 @@ namespace Fusion {
 		m_FileIndex += length;
 
 		if (read != length) {
-			fprintf(stderr, "Requested to read %d but read %d\n", length, read);
+			fprintf(stderr, "Requested to read %zd but read %d\n", length, read);
 			return {};
 		}
 

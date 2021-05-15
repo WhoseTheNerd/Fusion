@@ -22,3 +22,7 @@
 #include "Fusion/Graphics/RenderCommand.h"
 #include "Fusion/Graphics/OrthographicCameraController.h"
 #include "Fusion/Graphics/Renderer2D.h"
+
+#include "Fusion/Audio/OpenAL.hpp"
+#include "Fusion/Audio/Sound.hpp"
+#include "Fusion/Audio/Music.hpp"

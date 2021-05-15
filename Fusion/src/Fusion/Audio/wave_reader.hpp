@@ -62,7 +62,7 @@ namespace RIFF {
 
 namespace Fusion {
 
-	class F_API WaveReader : public Reader
+	class WaveReader : public Reader
 	{
 	public:
 		WaveReader(const char* filepath);

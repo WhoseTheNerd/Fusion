@@ -1,3 +1,4 @@
+#include "fpch.h"
 #include "vorbis_reader.hpp"
 
 #include <iostream>
@@ -148,7 +149,7 @@ namespace Fusion {
 				return 0;
 			}
 		}
-		audioData->SizeConsumed += length;
+		audioData->SizeConsumed += static_cast<uint32_t>(length);
 
 		std::memcpy(destination, &moreData[0], length);
 
@@ -163,7 +164,7 @@ namespace Fusion {
 
 		if (type == SEEK_CUR)
 		{
-			audioData->SizeConsumed += to;
+			audioData->SizeConsumed += static_cast<uint32_t>(to);
 		}
 		else if (type == SEEK_END)
 		{

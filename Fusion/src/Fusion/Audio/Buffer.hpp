@@ -7,7 +7,7 @@
 
 namespace Fusion { namespace Audio {
 
-	class F_API Buffer
+	class Buffer
 	{
 	public:
 		Buffer();

@@ -11,13 +11,13 @@
 #include <type_traits>
 
 namespace OpenAL {
-	F_API void SourceQueueBuffers(unsigned int sid, int numEntries, const unsigned int* bids);
-	F_API void SourceUnqueueBuffers(unsigned int sid, int numEntries, unsigned int* bids);
+	void SourceQueueBuffers(unsigned int sid, int numEntries, const unsigned int* bids);
+	void SourceUnqueueBuffers(unsigned int sid, int numEntries, unsigned int* bids);
 }
 
 namespace Fusion { namespace Audio {
 
-	class F_API Source
+	class Source
 	{
 	public:
 		Source();

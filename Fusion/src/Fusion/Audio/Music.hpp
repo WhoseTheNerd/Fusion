@@ -11,7 +11,7 @@
 
 namespace Fusion { namespace Audio {
 
-	class F_API Music
+	class Music
 	{
 	public:
 		Music(std::string_view filepath);

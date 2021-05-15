@@ -8,10 +8,10 @@
 	path = Fusion/vendor/glm
 	url = https://github.com/g-truc/glm
 [submodule "Fusion-Audio/vendor/vorbis"]
-	path = Fusion-Audio/vendor/vorbis
+	path = Fusion/vendor/vorbis
 	url = https://github.com/WhoseTheNerd/vorbis
 [submodule "Fusion-Audio/vendor/ogg"]
-	path = Fusion-Audio/vendor/ogg
+	path = Fusion/vendor/ogg
 	url = https://github.com/WhoseTheNerd/ogg
 [submodule "Fusion-Audio/vendor/openal-soft"]
 	path = Fusion-Audio/vendor/openal-soft

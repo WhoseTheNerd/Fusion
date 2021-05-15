@@ -8,7 +8,7 @@
 
 namespace Fusion {
 
-	class F_API Reader
+	class Reader
 	{
 	public:
 		virtual ~Reader() = default;

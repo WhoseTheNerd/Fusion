@@ -1,5 +1,4 @@
 #include <Fusion.h>
-#include <FusionAudio.h>
 
 #include <glad/glad.h>
 
@@ -51,6 +50,7 @@ public:
 private:
 	Fusion::Ref<Fusion::Graphics::Texture2D> m_Texture;
 	Fusion::Graphics::OrthographicCameraController m_CameraController{ 960.0f / 540.0f };
+
 	Fusion::Audio::System m_AudioSystem;
 	Fusion::Audio::Music m_Music;
 	Fusion::Audio::Sound m_Sound;
