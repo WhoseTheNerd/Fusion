@@ -1,4 +1,5 @@
 #include <Fusion.h>
+#include <FusionAudio.h>
 
 #include <glad/glad.h>
 
@@ -10,6 +11,14 @@
 class SandboxLayer : public Fusion::Layer
 {
 public:
+	SandboxLayer()
+		: m_Sound("helloworld.wav"), m_Music("Evacuate - Ludum Dare 30.ogg")
+	{
+		m_Sound.Play();
+		m_Sound.Wait();
+		m_Music.Play();
+	}
+
 	virtual void OnAttach()
 	{
 		Fusion::Graphics::Renderer2D::Init();
@@ -42,6 +51,9 @@ public:
 private:
 	Fusion::Ref<Fusion::Graphics::Texture2D> m_Texture;
 	Fusion::Graphics::OrthographicCameraController m_CameraController{ 960.0f / 540.0f };
+	Fusion::Audio::System m_AudioSystem;
+	Fusion::Audio::Music m_Music;
+	Fusion::Audio::Sound m_Sound;
 };
 
 class Sandbox : public Fusion::Application

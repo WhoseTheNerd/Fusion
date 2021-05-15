@@ -33,13 +33,14 @@ project "Fusion"
 		"_CRT_SECURE_NO_WARNINGS",
 		"GLFW_INCLUDE_NONE",
 		"GLFW_DLL",
-		"F_BUILD_DLL"
+		"F_BUILD_DLL",
+		"GLAD_GLAPI_EXPORT"
 	}
 
 	links
 	{
-		"GLFW",
-		"Glad"
+		"glfw3",
+		"glad"
 	}
 
 	postbuildcommands

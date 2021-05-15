@@ -16,6 +16,7 @@ project "Sandbox"
 	includedirs
 	{
 		"%{wks.location}/Fusion/src",
+		"%{wks.location}/Fusion-Audio/src",
 		"%{IncludeDir.SPDLOG}",
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.GLM}"
@@ -23,7 +24,8 @@ project "Sandbox"
 
 	links
 	{
-		"Fusion"
+		"Fusion",
+		"Fusion-Audio"
 	}
 
 	defines
