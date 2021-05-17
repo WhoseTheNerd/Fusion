@@ -2,9 +2,10 @@
 
 #include "Fusion/Graphics/Shader.h"
 
-#include <unordered_map>
-
 #define USE_UNIFORM_CACHING 1
+#if USE_UNIFORM_CACHING
+#include <unordered_map>
+#endif
 
 namespace Fusion { namespace Graphics {
 

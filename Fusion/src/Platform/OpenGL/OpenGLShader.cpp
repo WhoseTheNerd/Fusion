@@ -135,13 +135,17 @@ namespace Fusion { namespace Graphics {
 	{
 		Timer timer("GetUniformLocation");
 
+#if USE_UNIFORM_CACHING
 		if (m_UniformLocations.find(name) != m_UniformLocations.end())
 			return m_UniformLocations[name];
+#endif
 
 		int location = glGetUniformLocation(m_Program, name);
 		F_CORE_ASSERT(location > 0, "Uniform doesn't exist!");
 
+#if USE_UNIFORM_CACHING
 		m_UniformLocations[name] = location;
+#endif
 		return location;
 	}
 
