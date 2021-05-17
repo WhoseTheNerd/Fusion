@@ -4,32 +4,38 @@
 
 #include "Fusion/Core/PlatformDetection.h"
 
-#ifdef F_DEBUG
-	#if defined(F_PLATFORM_WINDOWS)
+#if defined(F_PLATFORM_WINDOWS)
+	#if F_DEBUG
+		#define F_ENABLE_ASSERTS
 		#define F_DEBUGBREAK() __debugbreak()
-		#if defined(F_BUILD_DLL)
-			#define F_API __declspec(dllexport)
-		#elif defined(F_DLL)
-			#define F_API __declspec(dllimport)
-		#else
-			#define F_API
-		#endif
-	#elif defined(F_PLATFORM_LINUX)
+	#else
+		#define F_DEBUGBREAK()
+	#endif
+
+	#if defined(F_BUILD_DLL)
+		#define F_API __declspec(dllexport)
+	#elif defined(F_DLL)
+		#define F_API __declspec(dllimport)
+	#else
+		#define F_API
+	#endif
+#elif defined(F_PLATFORM_LINUX)
+	#if F_DEBUG
 		#include <signal.h>
 		#define F_DEBUGBREAK() raise(SIGTRAP)
-		#if defined(F_BUILD_DLL)
-			#define F_API __attribute__((visibility("default")))
-		#elif defined(F_DLL)
-			#define F_API
-		#else
-			#define F_API
-		#endif
 	#else
-		#error "Platform doesn't support debugbreak yet"
+		#define F_DEBUGBREAK() 
 	#endif
-	#define F_ENABLE_ASSERTS
+
+	#if defined(F_BUILD_DLL)
+		#define F_API __attribute__((visibility("default")))
+	#elif defined(F_DLL)
+		#define F_API
+	#else
+		#define F_API
+	#endif
 #else
-	#define F_DEBUGBREAK()
+	#error "Platform doesn't support debugbreak yet"
 #endif
 
 #define BIT(x) (1 << x)

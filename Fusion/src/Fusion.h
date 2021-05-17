@@ -12,7 +12,9 @@
 #include "Fusion/Events/MouseEvent.h"
 #include "Fusion/Events/ApplicationEvent.h"
 
+#ifdef F_MAIN_APP
 #include "Fusion/Core/EntryPoint.h"
+#endif
 
 #include "Fusion/Graphics/VertexBuffer.h"
 #include "Fusion/Graphics/IndexBuffer.h"

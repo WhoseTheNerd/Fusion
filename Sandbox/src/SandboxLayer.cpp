@@ -24,7 +24,7 @@ namespace Sandbox {
 		Fusion::Graphics::Renderer2D::Shutdown();
 	}
 
-	void SandboxLayer::OnUpdate(const Fusion::Timestep ts)
+	void SandboxLayer::OnUpdate(Fusion::Timestep ts)
 	{
 		m_CameraController.OnUpdate(ts);
 

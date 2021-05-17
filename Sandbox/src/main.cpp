@@ -1,9 +1,5 @@
+#define F_MAIN_APP
 #include <Fusion.h>
-
-#include <vector>
-
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
 
 #include "SandboxLayer.h"
 
