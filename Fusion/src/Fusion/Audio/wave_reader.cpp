@@ -76,7 +76,7 @@ namespace Fusion {
 		m_FileIndex += length;
 
 		if (read != length) {
-			fprintf(stderr, "Requested to read %zd but read %d\n", length, read);
+			fprintf(stderr, "Requested to read %d but read %zd\n", length, read);
 			return {};
 		}
 

@@ -133,8 +133,6 @@ namespace Fusion { namespace Graphics {
 
 	int OpenGLShader::GetUniformLocation(const char* name) const
 	{
-		Timer timer("GetUniformLocation");
-
 #if USE_UNIFORM_CACHING
 		if (m_UniformLocations.find(name) != m_UniformLocations.end())
 			return m_UniformLocations[name];

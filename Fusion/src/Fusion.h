@@ -6,6 +6,7 @@
 #include "Fusion/Core/Layer.h"
 #include "Fusion/Core/ColorConversion.h"
 #include "Fusion/Core/Input.h"
+#include "Fusion/Core/Timer.h"
 
 #include "Fusion/Events/Event.h"
 #include "Fusion/Events/KeyEvent.h"
