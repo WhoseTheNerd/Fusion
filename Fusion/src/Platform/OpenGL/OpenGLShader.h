@@ -2,6 +2,10 @@
 
 #include "Fusion/Graphics/Shader.h"
 
+#include <unordered_map>
+
+#define USE_UNIFORM_CACHING 1
+
 namespace Fusion { namespace Graphics {
 
 	class OpenGLShader : public Shader
@@ -22,9 +26,12 @@ namespace Fusion { namespace Graphics {
 		virtual void SetMat4(const char* name, const glm::mat4& value) override;
 	private:
 		uint32_t CompileShader(const char* source, const uint32_t type);
-		int GetUniformLocation(const char* name);
+		int GetUniformLocation(const char* name) const;
 	private:
 		uint32_t m_Program;
+#if USE_UNIFORM_CACHING
+		mutable std::unordered_map<std::string, int> m_UniformLocations;
+#endif
 	};
 
 } }

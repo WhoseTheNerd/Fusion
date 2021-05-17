@@ -4,6 +4,8 @@
 #include <glad/glad.h>
 #include <glm/gtc/type_ptr.hpp>
 
+#include "Fusion/Core/Timer.h"
+
 namespace Fusion { namespace Graphics {
 
 	Ref<Shader> Shader::Create(const std::string& vertexSrc, const std::string& fragmentSrc)
@@ -129,10 +131,17 @@ namespace Fusion { namespace Graphics {
 		glProgramUniformMatrix4fv(m_Program, location, 1, GL_FALSE, glm::value_ptr(value));
 	}
 
-	int OpenGLShader::GetUniformLocation(const char* name)
+	int OpenGLShader::GetUniformLocation(const char* name) const
 	{
+		Timer timer("GetUniformLocation");
+
+		if (m_UniformLocations.find(name) != m_UniformLocations.end())
+			return m_UniformLocations[name];
+
 		int location = glGetUniformLocation(m_Program, name);
 		F_CORE_ASSERT(location > 0, "Uniform doesn't exist!");
+
+		m_UniformLocations[name] = location;
 		return location;
 	}
 
